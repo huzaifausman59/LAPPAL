@@ -279,4 +279,131 @@ export const globalStyles = `
   .empty-state { text-align: center; padding: 60px 20px; color: ${theme.muted}; }
   .empty-state-icon { font-size: 40px; margin-bottom: 12px; }
   .empty-state-text { font-size: 16px; }
+
+  /* ─── Responsive ─────────────────────────────────── */
+
+/* Tablet (max 900px) */
+@media (max-width: 900px) {
+  .product-layout {
+    grid-template-columns: 1fr;
+  }
+  .product-side {
+    flex-direction: column;
+  }
+  .seller-profile-layout {
+    grid-template-columns: 1fr;
+  }
+  .specs-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Mobile (max 600px) */
+@media (max-width: 600px) {
+  /* Page padding */
+  .page {
+    padding: 16px;
+  }
+
+  /* Navbar */
+  .navbar {
+    padding: 0 16px;
+  }
+  .nav-link {
+    font-size: 13px;
+  }
+  .navbar-links {
+    gap: 14px;
+  }
+
+  /* Landing */
+  .landing-title {
+    font-size: 28px;
+  }
+  .landing-subtitle {
+    font-size: 14px;
+  }
+  .landing-buttons {
+    flex-direction: column;
+    width: 100%;
+    padding: 0 32px;
+  }
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Filter bar */
+  .filter-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 16px;
+  }
+  .filter-divider {
+    display: none;
+  }
+  .filter-section {
+    gap: 10px;
+  }
+
+  /* Listings grid — single column */
+  .listings-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* My listings grid — single column */
+  .my-listings-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Product detail */
+  .product-layout {
+    grid-template-columns: 1fr;
+  }
+  .product-main-img {
+    height: 260px;
+  }
+  .product-title {
+    font-size: 20px;
+  }
+  .product-price {
+    font-size: 22px;
+  }
+  .thumbnail {
+    width: 60px;
+    height: 50px;
+  }
+
+  /* Seller profile */
+  .seller-profile-layout {
+    grid-template-columns: 1fr;
+  }
+  .seller-listings-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Modal card */
+  .modal-card {
+    margin: 16px;
+    padding: 24px 20px;
+  }
+
+  /* Inbox */
+  .inbox-preview {
+    max-width: 180px;
+  }
+
+  /* Dashboard header */
+  .dash-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  /* Chat */
+  .chat-input-row {
+    padding: 10px 14px;
+  }
+}
 `;
