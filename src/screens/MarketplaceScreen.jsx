@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { LISTINGS } from "../data/listings";
 import { EmptyState } from "../components/ui";
+import { SearchEmptyIcon } from "../components/icons";
 
 function ListingCard({ listing, onClick }) {
   return (
@@ -76,7 +77,7 @@ export default function MarketplaceScreen({ onViewProduct }) {
 
       {/* Listings */}
       {filtered.length === 0 ? (
-        <EmptyState icon="🔍" text="No listings match your filters." />
+        <EmptyState icon={<SearchEmptyIcon />} text="No listings match your filters." />
       ) : (
         <div className="listings-grid">
           {filtered.map((l) => (

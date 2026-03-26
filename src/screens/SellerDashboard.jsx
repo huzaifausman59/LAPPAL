@@ -2,6 +2,8 @@ import { useState } from "react";
 import { LISTINGS } from "../data/listings";
 import { EmptyState, Toast } from "../components/ui";
 import ListingFormModal from "../components/ListingFormModal";
+import { NoListingsIcon } from "../components/icons";
+
 
 export default function SellerDashboard({ user, onViewProduct }) {
   const [listings, setListings] = useState(
@@ -50,7 +52,7 @@ export default function SellerDashboard({ user, onViewProduct }) {
       </div>
 
       {listings.length === 0 ? (
-        <EmptyState icon="📦" text="No listings yet. Add your first one!" />
+        <EmptyState icon={<NoListingsIcon />} text="No listings yet. Add your first one!" />
       ) : (
         <div className="my-listings-grid">
           {listings.map((l) => (

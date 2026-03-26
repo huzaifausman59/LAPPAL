@@ -1,29 +1,17 @@
 // Shared primitive UI components used across the app
+import { LappalLogo } from "../icons";
 
 export function Logo({ size = "sm" }) {
-  if (size === "lg") {
-    return (
-      <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-        <div className="landing-logo-icon">💻</div>
-        <span style={{ fontSize: 42, fontWeight: 700, letterSpacing: -1 }}>Lappal</span>
-      </div>
-    );
-  }
-  return (
-    <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-      <div className="modal-logo-icon">💻</div>
-      <span style={{ fontSize: 20, fontWeight: 700 }}>Lappal</span>
-    </div>
-  );
+  return <LappalLogo size={size} />;
 }
+
 
 export function Navbar({ user, onNavigate, onLogoutClick }) {
   const home = user?.role === "seller" ? "dashboard" : "marketplace";
   return (
     <nav className="navbar">
       <div className="navbar-brand" onClick={() => onNavigate(home)}>
-        <div className="logo-icon">💻</div>
-        Lappal
+        <LappalLogo size="sm" />
       </div>
       {user && (
         <div className="navbar-links">
@@ -32,9 +20,7 @@ export function Navbar({ user, onNavigate, onLogoutClick }) {
           ) : (
             <>
               <button className="nav-link" onClick={() => onNavigate("dashboard")}>Dashboard</button>
-              <button className="nav-link" onClick={() => onNavigate("messages")}>
-                💬 Messages
-              </button>
+              <button className="nav-link" onClick={() => onNavigate("messages")}>Messages</button>
             </>
           )}
           <button className="nav-link" onClick={onLogoutClick}>Logout</button>
