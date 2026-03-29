@@ -14,7 +14,7 @@ export const LISTINGS = [
       "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=600&q=80",
     ],
     description:
-      "The Dell XPS 15 is a premium laptop that combines powerful performance with sleek design. Perfect for professionals and content creators who need a reliable machine for demanding tasks. Features an InfinityEdge display with minimal bezels. Gently used for 6 months, excellent condition, no scratches or damage. Comes with original charger and packaging.",
+      "The Dell XPS 15 is a premium laptop that combines powerful performance with sleek design. Perfect for professionals and content creators. Features an InfinityEdge display. Gently used for 6 months, excellent condition. Comes with original charger and packaging.",
     specs: {
       Processor: "Intel Core i7-12700H (12th Gen)",
       RAM: "16GB DDR5",
@@ -39,7 +39,7 @@ export const LISTINGS = [
       "https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?w=600&q=80",
     ],
     description:
-      "The ASUS ROG Gaming Beast delivers uncompromising gaming performance with RTX graphics and a blazing 165Hz display. Perfect for competitive gaming and heavy workloads. Barely used, in mint condition.",
+      "The ASUS ROG Gaming Beast delivers uncompromising gaming performance with RTX graphics and a blazing 165Hz display. Barely used, mint condition.",
     specs: {
       Processor: "AMD Ryzen 9 6900HX",
       RAM: "32GB DDR5",
@@ -64,7 +64,7 @@ export const LISTINGS = [
       "https://images.unsplash.com/photo-1629131726692-1accd0c53ce0?w=600&q=80",
     ],
     description:
-      "Apple MacBook Pro 16 with M2 Pro chip. Exceptional battery life, stunning Liquid Retina XDR display, and the power to handle pro-level tasks with ease. Bought 8 months ago, zero scratches, pristine condition.",
+      "Apple MacBook Pro 16 with M2 Pro chip. Exceptional battery life, stunning Liquid Retina XDR display. Bought 8 months ago, zero scratches, pristine condition.",
     specs: {
       Processor: "Apple M2 Pro (12-core)",
       RAM: "16GB Unified Memory",
@@ -89,7 +89,7 @@ export const LISTINGS = [
       "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600&q=80",
     ],
     description:
-      "HP EliteBook 840 G8 — a business powerhouse with military-grade durability. Minimal wear, comes with a warranty. Ideal for professionals who need reliability on the go.",
+      "HP EliteBook 840 G8 — a business powerhouse with military-grade durability. Minimal wear, comes with a warranty.",
     specs: {
       Processor: "Intel Core i5-1145G7",
       RAM: "16GB DDR4",
@@ -114,7 +114,7 @@ export const LISTINGS = [
       "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=600&q=80",
     ],
     description:
-      "Lenovo ThinkPad X1 Carbon — the legendary business ultrabook. Ultra-light at 1.13kg, 18-hour battery life, and a keyboard that is still the gold standard. Gently used, free local pickup available.",
+      "Lenovo ThinkPad X1 Carbon — the legendary business ultrabook. Ultra-light at 1.13kg, 18-hour battery life. Gently used, free local pickup available.",
     specs: {
       Processor: "Intel Core i7-1165G7",
       RAM: "16GB LPDDR4x",
@@ -139,7 +139,7 @@ export const LISTINGS = [
       "https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?w=600&q=80",
     ],
     description:
-      "ASUS ZenBook Pro Duo with ScreenPad Plus secondary display. A creative powerhouse for designers and content creators. In excellent condition, comes with original accessories.",
+      "ASUS ZenBook Pro Duo with ScreenPad Plus secondary display. A creative powerhouse for designers and content creators. Excellent condition, original accessories included.",
     specs: {
       Processor: "Intel Core i7-12700H",
       RAM: "16GB DDR5",
@@ -152,11 +152,67 @@ export const LISTINGS = [
 ];
 
 export const SELLERS = {
-  1: { name: "TechStore Pro", since: "January 2023", location: "New York, NY", listings: [1, 6] },
-  2: { name: "GamersHub", since: "March 2022", location: "Los Angeles, CA", listings: [2] },
-  3: { name: "Apple Certified", since: "June 2021", location: "San Francisco, CA", listings: [3] },
-  4: { name: "BusinessTech", since: "September 2023", location: "Chicago, IL", listings: [4] },
-  5: { name: "ValueComputers", since: "February 2022", location: "Austin, TX", listings: [5] },
+  1: {
+    name: "TechStore Pro",
+    since: "January 2023",
+    location: "New York, NY",
+    listings: [1, 6],
+    rating: 4.9,
+    totalSales: 32,
+    reviews: [
+      { id: 1, reviewer: "Sara A.", rating: 5, comment: "Very responsive seller, item as described!", date: "March 2026" },
+      { id: 2, reviewer: "Bilal R.", rating: 4, comment: "Quick pickup, good condition. Recommended.", date: "February 2026" },
+      { id: 3, reviewer: "Ahmed K.", rating: 5, comment: "Excellent packaging, fast response. Will buy again!", date: "January 2026" },
+    ],
+  },
+  2: {
+    name: "GamersHub",
+    since: "March 2022",
+    location: "Los Angeles, CA",
+    listings: [2],
+    rating: 4.7,
+    totalSales: 18,
+    reviews: [
+      { id: 1, reviewer: "Omar T.", rating: 5, comment: "Great seller, laptop was exactly as described.", date: "March 2026" },
+      { id: 2, reviewer: "Zara M.", rating: 4, comment: "Good experience overall, minor delay in response.", date: "January 2026" },
+    ],
+  },
+  3: {
+    name: "Apple Certified",
+    since: "June 2021",
+    location: "San Francisco, CA",
+    listings: [3],
+    rating: 4.8,
+    totalSales: 45,
+    reviews: [
+      { id: 1, reviewer: "Lena K.", rating: 5, comment: "Perfect condition MacBook, exactly as advertised.", date: "March 2026" },
+      { id: 2, reviewer: "James P.", rating: 5, comment: "Super smooth transaction, highly recommend.", date: "February 2026" },
+    ],
+  },
+  4: {
+    name: "BusinessTech",
+    since: "September 2023",
+    location: "Chicago, IL",
+    listings: [4],
+    rating: 4.5,
+    totalSales: 12,
+    reviews: [
+      { id: 1, reviewer: "Maria S.", rating: 4, comment: "Laptop came with warranty as promised.", date: "February 2026" },
+      { id: 2, reviewer: "David L.", rating: 5, comment: "Very honest description, smooth deal.", date: "January 2026" },
+    ],
+  },
+  5: {
+    name: "ValueComputers",
+    since: "February 2022",
+    location: "Austin, TX",
+    listings: [5],
+    rating: 4.6,
+    totalSales: 27,
+    reviews: [
+      { id: 1, reviewer: "Fatima N.", rating: 5, comment: "Free pickup as promised, great condition.", date: "March 2026" },
+      { id: 2, reviewer: "Hassan R.", rating: 4, comment: "Good value for money, responsive seller.", date: "February 2026" },
+    ],
+  },
 };
 
 export const INITIAL_MESSAGES = {
