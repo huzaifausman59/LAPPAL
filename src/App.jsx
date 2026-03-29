@@ -107,11 +107,12 @@ export default function App() {
       )}
 
       {screen === "profile" && (
-        <ProfileScreen
-          onBack={() => navigate("marketplace")}
-          onViewProduct={viewProduct}
-        />
-      )}
+  <ProfileScreen
+    onBack={() => navigate("marketplace")}
+    onViewProduct={viewProduct}
+    onNavigate={navigate}
+  />
+)}
     </>
   );
 }

@@ -12,7 +12,7 @@ const USER_PROFILE = {
   sellerId: 1, // links to TechStore Pro seller data for stats
 };
 
-export default function ProfileScreen({ onBack, onViewProduct }) {
+export default function ProfileScreen({ onBack, onViewProduct ,onNavigate }) {
   const [showEditModal, setShowEditModal] = useState(false);
   const [profile, setProfile] = useState(USER_PROFILE);
 
@@ -87,10 +87,13 @@ export default function ProfileScreen({ onBack, onViewProduct }) {
             </div>
           ))}
           {/* Add new listing tile */}
-          <div className="profile-listing-card profile-add-tile">
-            <span style={{ fontSize: 22, color: "#2563eb", marginBottom: 4 }}>+</span>
-            <span style={{ fontSize: 13, color: "#8b949e" }}>Add new listing</span>
-          </div>
+          <div
+  className="profile-listing-card profile-add-tile"
+  onClick={() => onNavigate("dashboard")}
+>
+  <span style={{ fontSize: 22, color: "#2563eb", marginBottom: 4 }}>+</span>
+  <span style={{ fontSize: 13, color: "#8b949e" }}>Add new listing</span>
+</div>
         </div>
       </section>
 
