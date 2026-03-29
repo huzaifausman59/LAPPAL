@@ -406,4 +406,71 @@ export const globalStyles = `
     padding: 10px 14px;
   }
 }
+
+/* ── Profile Screen ───────────────────────────────── */
+  .profile-section { margin-bottom: 24px; }
+  .profile-section-label {
+    font-size: 11px; font-weight: 600; color: #8b949e;
+    text-transform: uppercase; letter-spacing: 0.8px;
+    margin-bottom: 10px; padding-bottom: 6px;
+    border-bottom: 1px solid #21262d;
+  }
+  .profile-user-card {
+    display: flex; flex-direction: column; align-items: center;
+    padding: 24px 16px; background: #161b22;
+    border: 1px solid #21262d; border-radius: 14px;
+  }
+  .profile-avatar {
+    width: 72px; height: 72px; border-radius: 50%;
+    background: #2563eb; display: flex; align-items: center;
+    justify-content: center; font-size: 24px; font-weight: 700;
+    color: white; margin-bottom: 12px;
+  }
+  .profile-name { font-size: 20px; font-weight: 700; margin-bottom: 6px; }
+  .profile-meta { font-size: 13px; color: #8b949e; }
+
+  .profile-stats-row {
+    display: flex; align-items: center; justify-content: space-around;
+    background: #161b22; border: 1px solid #21262d;
+    border-radius: 14px; padding: 20px 16px;
+  }
+  .profile-stat { text-align: center; flex: 1; }
+  .profile-stat-value { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+  .profile-stat-label { font-size: 12px; color: #8b949e; }
+  .profile-stat-divider { width: 1px; height: 36px; background: #21262d; }
+
+  .profile-listings-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+  }
+  .profile-listing-card {
+    background: #161b22; border: 1px solid #21262d;
+    border-radius: 12px; overflow: hidden; cursor: pointer; transition: all 0.2s;
+  }
+  .profile-listing-card:hover { border-color: #3d4757; transform: translateY(-1px); }
+  .profile-listing-card img { width: 100%; height: 110px; object-fit: cover; display: block; }
+  .profile-listing-body { padding: 10px 12px; }
+  .profile-listing-title { font-size: 13px; font-weight: 500; margin-bottom: 3px; }
+  .profile-listing-price { font-size: 14px; font-weight: 700; color: #2563eb; font-family: 'JetBrains Mono', monospace; }
+  .profile-add-tile {
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: center; min-height: 140px; cursor: pointer;
+    border: 2px dashed #21262d; background: transparent;
+    border-radius: 12px; transition: border-color 0.2s;
+  }
+  .profile-add-tile:hover { border-color: #2563eb; }
+
+  .profile-reviews-list {
+    background: #161b22; border: 1px solid #21262d;
+    border-radius: 14px; overflow: hidden;
+  }
+  .profile-review-item {
+    padding: 16px 20px; border-bottom: 1px solid #21262d;
+  }
+  .profile-review-item:last-child { border-bottom: none; }
+  .profile-review-header {
+    display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;
+  }
+  .profile-review-name { font-size: 14px; font-weight: 600; }
+  .profile-review-comment { font-size: 13px; color: #c9d1d9; line-height: 1.5; }
+  .profile-review-date { font-size: 11px; color: #8b949e; margin-top: 4px; }
 `;

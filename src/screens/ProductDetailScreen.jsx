@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { LISTINGS, SELLERS } from "../data/listings";
 import { BackButton } from "../components/ui";
+import StarRating from "../components/StarRating";
 
 export default function ProductDetailScreen({
   listingId,
@@ -37,7 +38,6 @@ export default function ProductDetailScreen({
               />
             ))}
           </div>
-
           <div className="specs-section">
             <div className="specs-title">Specifications</div>
             <div className="specs-grid">
@@ -72,12 +72,18 @@ export default function ProductDetailScreen({
               </div>
             </div>
             <div className="seller-info-row">
+              <div className="seller-info-key">Rating</div>
+              <div className="seller-info-val">
+                <StarRating rating={seller.rating} size={14} />
+              </div>
+            </div>
+            <div className="seller-info-row">
               <div className="seller-info-key">Member Since</div>
               <div className="seller-info-val">{seller.since}</div>
             </div>
             <div className="seller-info-row" style={{ marginBottom: 18 }}>
-              <div className="seller-info-key">Total Listings</div>
-              <div className="seller-info-val">{seller.listings.length}</div>
+              <div className="seller-info-key">Total Sales</div>
+              <div className="seller-info-val">{seller.totalSales} sold</div>
             </div>
             <button
               className="btn btn-primary btn-full"
