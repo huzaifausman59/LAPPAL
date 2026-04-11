@@ -1,25 +1,31 @@
 import { LISTINGS, SELLERS } from "../data/listings";
 import { BackButton } from "../components/ui";
 import StarRating from "../components/StarRating";
+import { calcRating } from "../App";
 
-export default function SellerProfileScreen({ sellerId, onBack, onViewProduct }) {
-  const seller = SELLERS[sellerId];
+export default function SellerProfileScreen({ sellerId, onBack, onViewProduct, reviews }) {
+  const seller   = SELLERS[sellerId];
   const listings = LISTINGS.filter((l) => seller.listings.includes(l.id));
+
+  const sellerReviews = reviews?.[sellerId] || [];
+  const liveRating    = sellerReviews.length > 0 ? calcRating(sellerReviews) : seller.rating;
 
   return (
     <div className="page">
       <BackButton onClick={onBack} />
-
       <div className="seller-profile-layout">
-        {/* Left: seller info card */}
+
+        {/* Left */}
         <div className="seller-profile-card">
           <div className="seller-profile-name">{seller.name}</div>
 
-          {/* Rating prominent at top */}
           <div style={{ marginBottom: 16 }}>
-            <StarRating rating={seller.rating} size={16} />
+            {liveRating > 0
+              ? <StarRating rating={liveRating} size={16} />
+              : <span style={{ fontSize: 13, color: "#8b949e" }}>No reviews yet</span>
+            }
             <span style={{ fontSize: 12, color: "#8b949e", marginLeft: 6 }}>
-              ({seller.reviews.length} reviews)
+              ({sellerReviews.length} review{sellerReviews.length !== 1 ? "s" : ""})
             </span>
           </div>
 
@@ -42,59 +48,35 @@ export default function SellerProfileScreen({ sellerId, onBack, onViewProduct })
 
           {/* Reviews */}
           <div style={{ marginTop: 20 }}>
-            <div
-              style={{
-                fontSize: 11,
-                color: "#8b949e",
-                textTransform: "uppercase",
-                letterSpacing: "0.5px",
-                marginBottom: 12,
-                fontWeight: 600,
-              }}
-            >
+            <div style={{
+              fontSize: 11, color: "#8b949e", textTransform: "uppercase",
+              letterSpacing: "0.5px", marginBottom: 12, fontWeight: 600,
+            }}>
               Reviews
             </div>
-            {seller.reviews.map((r) => (
-              <div
-                key={r.id}
-                style={{
-                  borderTop: "1px solid #21262d",
-                  paddingTop: 12,
-                  marginBottom: 12,
-                }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    marginBottom: 4,
-                  }}
-                >
-                  <span style={{ fontWeight: 600, fontSize: 14 }}>{r.reviewer}</span>
-                  <StarRating rating={r.rating} size={12} showNumber={false} />
+            {sellerReviews.length === 0 ? (
+              <p style={{ fontSize: 13, color: "#8b949e" }}>No reviews yet.</p>
+            ) : (
+              sellerReviews.map((r) => (
+                <div key={r.id} style={{ borderTop: "1px solid #21262d", paddingTop: 12, marginBottom: 12 }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 4 }}>
+                    <span style={{ fontWeight: 600, fontSize: 14 }}>{r.reviewer}</span>
+                    <StarRating rating={r.rating} size={12} showNumber={false} />
+                  </div>
+                  <div style={{ fontSize: 13, color: "#c9d1d9", lineHeight: 1.5 }}>{r.comment}</div>
+                  <div style={{ fontSize: 11, color: "#8b949e", marginTop: 4 }}>{r.date}</div>
                 </div>
-                <div style={{ fontSize: 13, color: "#c9d1d9", lineHeight: 1.5 }}>
-                  {r.comment}
-                </div>
-                <div style={{ fontSize: 11, color: "#8b949e", marginTop: 4 }}>
-                  {r.date}
-                </div>
-              </div>
-            ))}
+              ))
+            )}
           </div>
         </div>
 
-        {/* Right: seller's listings */}
+        {/* Right */}
         <div>
           <div className="seller-listings-title">{seller.name}'s Listings</div>
           <div className="seller-listings-grid">
             {listings.map((l) => (
-              <div
-                key={l.id}
-                className="listing-card"
-                onClick={() => onViewProduct(l.id)}
-              >
+              <div key={l.id} className="listing-card" onClick={() => onViewProduct(l.id)}>
                 <img src={l.image} alt={l.title} />
                 <div className="listing-card-body">
                   <div className="listing-card-title">{l.title}</div>
@@ -104,6 +86,7 @@ export default function SellerProfileScreen({ sellerId, onBack, onViewProduct })
             ))}
           </div>
         </div>
+
       </div>
     </div>
   );

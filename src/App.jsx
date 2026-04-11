@@ -2,6 +2,7 @@ import { useState } from "react";
 import { globalStyles } from "./styles/theme";
 import { Navbar } from "./components/ui";
 import LogoutModal from "./components/LogoutModal";
+import { SELLERS } from "./data/listings";
 
 import LandingScreen       from "./screens/LandingScreen";
 import LoginScreen         from "./screens/LoginScreen";
@@ -14,6 +15,22 @@ import SellerDashboard     from "./screens/SellerDashboard";
 import SellerProfileScreen from "./screens/SellerProfileScreen";
 import ProfileScreen       from "./screens/ProfileScreen";
 
+// Build initial reviews state from SELLERS mock data
+const buildInitialReviews = () => {
+  const map = {};
+  Object.entries(SELLERS).forEach(([id, seller]) => {
+    map[id] = seller.reviews || [];
+  });
+  return map;
+};
+
+// Helper: recalculate average rating — exported so other screens can use it
+export const calcRating = (reviews) => {
+  if (!reviews || reviews.length === 0) return 0;
+  const sum = reviews.reduce((acc, r) => acc + r.rating, 0);
+  return Math.round((sum / reviews.length) * 10) / 10;
+};
+
 export default function App() {
   const [screen, setScreen]               = useState("landing");
   const [user, setUser]                   = useState(null);
@@ -22,7 +39,18 @@ export default function App() {
   const [activeSeller, setActiveSeller]   = useState(null);
   const [activeChat, setActiveChat]       = useState(null);
 
-  const navigate = (s) => setScreen(s);
+  // Single source of truth for all reviews
+  const [reviews, setReviews] = useState(buildInitialReviews());
+
+  // Called from ChatScreen when a review is submitted
+  const addReview = (sellerId, newReview) => {
+    setReviews((prev) => ({
+      ...prev,
+      [sellerId]: [newReview, ...(prev[sellerId] || [])],
+    }));
+  };
+
+  const navigate    = (s) => setScreen(s);
 
   const login = (u) => {
     setUser(u);
@@ -35,20 +63,9 @@ export default function App() {
     setScreen("landing");
   };
 
-  const viewProduct = (id) => {
-    setActiveProduct(id);
-    setScreen("product");
-  };
-
-  const viewSeller = (id) => {
-    setActiveSeller(id);
-    setScreen("seller-profile");
-  };
-
-  const openChat = (sellerId) => {
-    setActiveChat(sellerId);
-    setScreen("chat");
-  };
+  const viewProduct = (id) => { setActiveProduct(id); setScreen("product"); };
+  const viewSeller  = (id) => { setActiveSeller(id);  setScreen("seller-profile"); };
+  const openChat    = (id) => { setActiveChat(id);    setScreen("chat"); };
 
   const authScreens = ["landing", "login", "register"];
   const showNavbar  = user && !authScreens.includes(screen);
@@ -58,11 +75,7 @@ export default function App() {
       <style>{globalStyles}</style>
 
       {showNavbar && (
-        <Navbar
-          user={user}
-          onNavigate={navigate}
-          onLogoutClick={() => setShowLogout(true)}
-        />
+        <Navbar user={user} onNavigate={navigate} onLogoutClick={() => setShowLogout(true)} />
       )}
 
       {showLogout && (
@@ -83,6 +96,7 @@ export default function App() {
           onBack={() => navigate("marketplace")}
           onViewSeller={viewSeller}
           onMessageSeller={openChat}
+          reviews={reviews}
         />
       )}
 
@@ -91,7 +105,12 @@ export default function App() {
       )}
 
       {screen === "chat" && activeChat && (
-        <ChatScreen sellerId={activeChat} onBack={() => navigate("messages")} />
+        <ChatScreen
+          sellerId={activeChat}
+          onBack={() => navigate("messages")}
+          onAddReview={addReview}
+          user={user}
+        />
       )}
 
       {screen === "dashboard" && (
@@ -103,16 +122,18 @@ export default function App() {
           sellerId={activeSeller}
           onBack={() => navigate("product")}
           onViewProduct={viewProduct}
+          reviews={reviews}
         />
       )}
 
       {screen === "profile" && (
-  <ProfileScreen
-    onBack={() => navigate("marketplace")}
-    onViewProduct={viewProduct}
-    onNavigate={navigate}
-  />
-)}
+        <ProfileScreen
+          onBack={() => navigate("marketplace")}
+          onViewProduct={viewProduct}
+          onNavigate={navigate}
+          reviews={reviews}
+        />
+      )}
     </>
   );
 }
