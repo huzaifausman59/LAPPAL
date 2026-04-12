@@ -73,13 +73,13 @@ export default function SellerDashboard({ user, onViewProduct }) {
                     className="btn-edit"
                     onClick={() => setEditListing(l)}
                   >
-                    ✏️ Edit
+                     Edit
                   </button>
                   <button
                     className="btn-delete-card"
                     onClick={() => deleteListing(l.id)}
                   >
-                    🗑️ Delete
+                     Delete
                   </button>
                 </div>
               </div>
