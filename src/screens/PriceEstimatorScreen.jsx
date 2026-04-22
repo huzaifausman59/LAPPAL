@@ -104,27 +104,7 @@ export default function PriceEstimatorScreen() {
     setResult(null);
 
     try {
-      // ── When your backend is ready, replace this block with: ──────────────
-      // const response = await fetch("https://your-api.com/predict", {
-      //   method: "POST",
-      //   headers: { "Content-Type": "application/json" },
-      //   body: JSON.stringify({
-      //     Company: form.Company,
-      //     Product: form.Product,
-      //     Cpu: form.Cpu,
-      //     Ram: form.Ram,
-      //     Memory: form.Memory,
-      //     Gpu: form.Gpu,
-      //     Age_years: form.Age_years,
-      //     Condition_10: form.Condition_10,
-      //     "Battery_Health_%": form.Battery_Health_percent,
-      //   }),
-      // });
-      // const data = await response.json();
-      // setResult(data.predicted_price);
-      // ─────────────────────────────────────────────────────────────────────
-
-      // Mock response for now — remove once API is connected
+      // Mock response for now 
       await new Promise((r) => setTimeout(r, 1400));
       const base = 800;
       const mock =
