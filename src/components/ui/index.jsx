@@ -21,6 +21,7 @@ export function Navbar({ user, onNavigate, onLogoutClick }) {
             <>
               <button className="nav-link" onClick={() => onNavigate("dashboard")}>Dashboard</button>
               <button className="nav-link" onClick={() => onNavigate("messages")}>Messages</button>
+              <button className="nav-link" onClick={() => onNavigate("estimator")}>Price Estimator</button>
             </>
           )}
           <button className="nav-link" onClick={() => onNavigate("profile")}>Profile</button>
